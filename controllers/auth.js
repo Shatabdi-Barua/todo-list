@@ -79,8 +79,10 @@ exports.login = async (req, res)=>{
         //     msg: "Login Succussful",
         //     // token: token,
         // }
+        req.session.userId = user._id;
         const allTodo = await Todo.find();
-        res.render("todo", {todo: allTodo});
+        res.redirect("/todos");
+        // res.render("todo", {todo: allTodo, userId: req.session.userId});
     }catch (err)
     {
         console.log(err);

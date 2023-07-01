@@ -12,8 +12,9 @@ router.post("/registration", register);
 router.post("/login", login);
 
 router.get("/todos", async (req,res)=>{
-    const allTodo = await Todo.find();
-    res.render("index", { todo: allTodo});
+    console.log(req.session.userId);
+    const allTodo = await Todo.find({ userID: req.session.userId });
+    res.render("todo", { todo: allTodo, userId: req.session.userId});
 })
 
 module.exports = router;

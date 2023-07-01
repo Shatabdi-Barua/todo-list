@@ -1,12 +1,17 @@
 const Todo = require("../models/todo");
-exports.addTodo = (req,res)=>{
+
+exports.addTodo = async (req,res)=>{
     const { todo } = req.body;
     // console.log(todo);
-    const newTodo = new Todo({ todo });
+    // const { userID } = req.session.userId;
+    console.log(req.session.userId);
+    const newTodo = new Todo({ todo: todo, userID: req.session.userId });
     newTodo.save()
         .then(()=>{
             console.log("Saved!");
-            res.redirect("/");
+            res.redirect("/todos");
+            // const allTodo = Todo.find();
+            // res.render("todo", {todo: allTodo, userId: req.session.userId});
         })
         .catch((err)=>{
             console.log(err);
@@ -18,7 +23,7 @@ exports.deleteTodo = async (req,res)=>{
     Todo.deleteOne({ _id: id})
         .then(()=>{
             console.log("Deleted Todo Successfully!");
-            res.redirect("/");
+            res.redirect("/todos");
         }) 
         .catch((err)=>{
             console.log(err);
