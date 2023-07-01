@@ -1,25 +1,31 @@
 <%- include("./partials/header") %>
 <nav class="navbar navbar-light bg-light">
-    <a class="navbar-brand" href="/">Todo App</a>
+    <div class="container">
+        <a class="navbar-brand" href="/">Todo App</a>
+        <div class="float-right">
+            <a class="navbar-brand" href="/">Login</a>
+            <a class="navbar-brand" href="/registration">Registration</a>
+        </div>
+    </div> 
 </nav>
-<div class="container">
-    <form action="/add/todo" method="post" class="d-flex">
-        <input type="text" class="form-control" name="todo" placeholder="Enter todo">
-        <input type="submit" value="Add" class="btn btn-md btn-primary mx-2">
-    </form>
-    <ul class="list-group my-5">
-        <% todo.forEach(todos =>{ %>
-                <li class="list-group-item"><%= todos.todo %> <a href="/delete/todo/<%= todos._id %>" class="btn btn-danger btn-md float-right">Delete</a></li>
-        <% }) %>
-
-    </ul>
-    <!-- <ul class="list-group my-5">
-        <% todo.forEach(todos => { %>
-        <li class="list-group-item"><%= todos.todo %> <a href="/delete/todo/<%= todos._id %>"
-                class="btn btn-danger btn-sm">Delete</a></li>
-
-        <% }) %>
-
-    </ul> -->
+<div class="container d-flex justify-content-center align-items-center">
+    <div class="bodyElem my-5 w-50">
+        <div class="card  text-white p-sm-2 p-md-2 p-lg-4 p-5 bg-info bg-gradient">
+            <h2 class="text-center">Login</h2>
+            <% if (msg) { %>
+            <span class="alert alert-success"><%= msg  %></span>
+            <% } %>
+            <hr>
+            <form action="/login" method="post">
+                <label for="email">Email</label>
+                <input type="email" name="email" class="form-control" placeholder="Enter email">
+                <label for="password">Password</label>
+                <input type="password" name="password" class="form-control" placeholder="Enter password">
+                <input type="submit" name="sumbit" value="LOGIN" class="btn btn-md btn-primary m-2 float-right">
+            </form>
+        </div>
+    </div>
+    
 </div>
+
 <%- include("./partials/footer") %>

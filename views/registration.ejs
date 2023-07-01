@@ -1,0 +1,40 @@
+<%- include("./partials/header") %>
+<style>
+    .regCard{
+        background-color: #59b2de;
+    }
+</style>
+<nav class="navbar navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="/">Todo App</a>
+        <div class="float-right">
+            <a class="navbar-brand" href="/">Login</a>
+            <a class="navbar-brand" href="/registration">Registration</a>
+        </div>
+    </div> 
+</nav>
+<div class="container d-flex justify-content-center align-items-center">
+    <div class="bodyElem my-5 w-50">
+        <div class="regCard card text-white p-sm-2 p-md-2 p-lg-4 p-5">
+            <h2 class="text-center">Registration</h2>
+            <hr>
+            <form action="/registration" method="post">
+                <label for="name">Name</label>
+                <input type="name" name="name" class="form-control" placeholder="Enter full name" required>
+                <label for="email">Email</label>
+                <input type="email" name="email" class="form-control" placeholder="Enter email" required>
+                <label for="password">Password</label>
+                <input type="password" name="password" class="form-control" placeholder="Enter password" required>
+                <label for="gender">Gender</label>
+                <select name="gender" class="form-control">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+                <input type="submit" name="sumbit" value="REGISTER" class="btn btn-md btn-success m-2 float-right">
+            </form>
+        </div>
+    </div>
+    
+</div>
+
+<%- include("./partials/footer") %>
