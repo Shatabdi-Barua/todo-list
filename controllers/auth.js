@@ -41,8 +41,8 @@ exports.register = async (req,res) => {
         //         gender: user.gender
         //     }, token,
         // });        
-        res.render("index", { msg: "Registration Success"});
-        
+        // res.render("index", { msg: "Registration Success"});
+        res.redirect("/")
     }catch (err)
     {
         console.log(err);
