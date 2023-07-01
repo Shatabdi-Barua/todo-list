@@ -88,7 +88,10 @@ exports.login = async (req, res)=>{
         console.log(err);
     }
 }
-
+exports.logout = async(req, res)=>{
+    req.session.destroy();
+    res.redirect('/');
+}
 exports.secret = async (req,res)=>{
     res.json({
         currentUser: req.user,

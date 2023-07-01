@@ -1,13 +1,19 @@
 <%- include("./partials/header") %>
 <nav class="navbar navbar-light bg-light">
     <a class="navbar-brand" href="/">Todo App</a>
+    <% if(userId){%>
+        <div class="float-right">
+            <a class="navbar-brand" href="/logout">Logout</a>
+            <a class="navbar-brand" href="/">My Accout</a>
+        </div>
+    <% } %>
 </nav>
 <div class="container">
     <form action="/add/todo" method="post" class="d-flex">
         <input type="text" class="form-control" name="todo" placeholder="Enter todo">
         <input type="submit" value="Add" class="btn btn-md btn-primary mx-2">
     </form>
-    <!-- <%= userId %> -->
+    
     <ul class="list-group my-5">
         <% todo.forEach(todos =>{ %>
                 <li class="list-group-item"><%= todos.todo %> <a href="/delete/todo/<%= todos._id %>" class="btn btn-danger btn-md float-right">Delete</a></li>
