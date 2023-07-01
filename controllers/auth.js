@@ -1,5 +1,5 @@
 const User = require("../models/user");
-// const Order = require("../models/order");
+const Todo = require("../models/todo");
 const { hashPassword, comparePassword } = require('../helpers/auth');
 // const jwt = require("jsonwebtoken");
 
@@ -75,10 +75,12 @@ exports.login = async (req, res)=>{
         }
         // const token = jwt.sign({_id: user._id}, process.env.SECRET_KEY, {expiresIn: "7d"}, )
 
-        res.json({
-            msg: "Login Succussful",
-            // token: token,
-        })
+        // res.json({
+        //     msg: "Login Succussful",
+        //     // token: token,
+        // }
+        const allTodo = await Todo.find();
+        res.render("todo", {todo: allTodo});
     }catch (err)
     {
         console.log(err);
@@ -117,47 +119,6 @@ exports.updateProfile = async (req,res)=>{
         res.json(updated);
     }
     catch(err){
-        console.log(err);
-    }
-}
-
-exports.createOrder = async (req,res) => {
-    try{
-        const { products, status } = req.body;
-        const buyer = req.user._id;
-        // console.log(req.user._id);
-        const order = await Order.create({
-            products, buyer, status
-        });
-        res.json(order);
-    }
-    catch(err)
-    {
-        console.log(err);
-    }
-}
-exports.getOrders = async (req, res) => {
-    try {
-        const orders = await Order.find({ buyer: req.user._id })
-            .populate("products", "-photo")
-            .populate("buyer", "name");
-        console.log(orders);
-        res.json(orders);
-    } catch (err) {
-        console.log(err);
-    }
-};
-
-exports.allOrders = async (req,res) => {
-    try{
-        const orders = await Order.find({})
-            .populate("products", "-photo")
-            .populate("buyer", "name")
-            .sort({createdAt: -1});
-        res.json(orders);
-    }
-    catch(err)
-    {
         console.log(err);
     }
 }
