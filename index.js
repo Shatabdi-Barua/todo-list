@@ -21,12 +21,12 @@ app.use(sessions({
     resave: false     
 }));
 
-app.use(require("./routes/index"));
-app.use(require("./routes/todo"));
+app.use(require("../routes/index"));
+app.use(require("../routes/todo"));
 
 mongoose.connect(process.env.DATABASE).then(()=>{
     app.listen(port, ()=>{
-        console.log(`Server run success in ${port}`);
+        console.log(`Server run success in`);
     })
 })
 .catch((err)=> console.log(err));
