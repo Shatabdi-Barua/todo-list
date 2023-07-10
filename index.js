@@ -30,3 +30,4 @@ mongoose.connect(process.env.DATABASE).then(()=>{
     })
 })
 .catch((err)=> console.log(err));
+module.exports = app;
