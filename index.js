@@ -21,8 +21,8 @@ app.use(sessions({
     resave: false     
 }));
 
-app.use(require("../routes/index"));
-app.use(require("../routes/todo"));
+app.use(require("./routes/index"));
+app.use(require("./routes/todo"));
 
 mongoose.connect(process.env.DATABASE).then(()=>{
     app.listen(port, ()=>{
